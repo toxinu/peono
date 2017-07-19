@@ -1,5 +1,7 @@
 # Peono
 
+[![travis-ci](https://api.travis-ci.org/toxinu/peono.svg?branch=master)](https://travis-ci.org/toxinu/peono)
+
 This is a very simple bash tasks runner.
 
 ## Usage
