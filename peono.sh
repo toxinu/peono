@@ -2,8 +2,8 @@
 set -e
 
 CONFIG_PATH="$HOME/.config/peono.conf"
-TASKS_FILE=".peonotasks.sh"
-LOG_LEVEL=1
+TASKS_FILE=${TASKS_FILE:=".peonotasks.sh"}
+LOG_LEVEL=${LOG_LEVEL:=1}
 
 _TASKS=()
 
@@ -55,11 +55,11 @@ run_task () {
         exit 2
     fi
 
-    echo "Running \"${1}\" task (from: $(pwd)/${TASKS_FILE})"
+    if [ "${LOG_LEVEL}" -ge 1 ]; then echo "[INFO] Running \"${1}\" task (from: $(pwd)/${TASKS_FILE})"; fi
     set +e
-    echo -e "\e[1m\e[94m#==========> BEGIN\e[0m"
+    if [ "${LOG_LEVEL}" -ge 1 ]; then echo -e "[INFO] \e[1m\e[94m#==========> BEGIN\e[0m"; fi
     eval "task_${1}"
-    echo -e "\e[1m\e[94m#==========> END\e[0m"
+    if [ "${LOG_LEVEL}" -ge 1 ]; then echo -e "[INFO] \e[1m\e[94m#==========> END\e[0m"; fi
     set -e
 }
 
